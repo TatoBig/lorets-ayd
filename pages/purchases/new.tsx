@@ -42,7 +42,7 @@ const Page = ({ products, providers }: Props) => {
     }
   }, [providerId])
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     console.log(data)
     const response = await newPurchase(data, products, details.length)
     if (response === 'success') {
