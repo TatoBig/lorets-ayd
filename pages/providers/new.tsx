@@ -1,18 +1,18 @@
 import { Button, Input, useToast } from '@chakra-ui/react'
 import Card from 'components/core/Card'
-import useCustomers from 'hooks/useCustomers'
+import useProviders from 'hooks/useProviders'
 import DefaultLayout from 'layouts/DefaultLayout'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 const Page = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
-  const { newCustomer } = useCustomers()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { newProvider } = useProviders()
   const router = useRouter()
   const toast = useToast()
 
-  const onSubmit = async (data: any) => {
-    const response = await newCustomer(data)
+  const onSubmit = async (data) => {
+    const response = await newProvider(data)
     if (response === 'success') {
       toast({
         title: 'Cliente guardado correctamente',
@@ -20,15 +20,12 @@ const Page = () => {
         duration: 2000,
         isClosable: true
       })
-      router.push('/customers')
+      router.push('/providers')
     }
-    console.log(response)
   }
 
-  console.log(watch('example'))
-
   return (
-    <DefaultLayout title="Crear cliente" max={false}>
+    <DefaultLayout title="Crear proveedor" max={false}>
       <Card>
         <form onSubmit={handleSubmit(onSubmit)} className="w-[500px] my-4">
           <div className="mb-2">

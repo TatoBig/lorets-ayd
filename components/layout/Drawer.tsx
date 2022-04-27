@@ -27,6 +27,11 @@ const drawerData = [
     title: 'Productos',
     link: '/products',
     icon: <AtSignIcon />
+  },
+  {
+    title: 'Usuarios',
+    link: '/users',
+    icon: <AtSignIcon />
   }
 ]
 

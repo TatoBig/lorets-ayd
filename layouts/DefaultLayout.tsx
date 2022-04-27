@@ -31,7 +31,7 @@ const DefaultLayout = ({ children, title, action, max = true }: Props) => {
         <Drawer />
       </div>
       <div className="w-full">
-        <div className="font-helvetica bg-indigo-600 w-full h-96 rounded-3xl flex items-center px-20 text-gray-200 shadow-xl">
+        <div className="font-helvetica -mb-36 bg-indigo-600 w-full h-96 rounded-3xl flex items-center px-20 text-gray-200 shadow-xl">
           <div className="mb-28 flex justify-between w-full">
             <div className="text-7xl">
               {title}
@@ -41,15 +41,13 @@ const DefaultLayout = ({ children, title, action, max = true }: Props) => {
               <Link href={action.link} passHref>
                 <div className="cursor-pointer bg-white rounded-3xl flex h-12 px-4 text-gray-700 font-helvetica font-bold items-center hover:bg-gray-100 transition-all hover:shadow-2xl">
                   {action.name}
-                  <ArrowRightIcon className="ml-4"/>
+                  <ArrowRightIcon className="ml-4" />
                 </div>
               </Link>
             }
           </div>
         </div>
-        <div className={(max ? ' ' : 'w-min ') + ' max-w-[98%] mx-4 -mt-36 bg-white rounded-3xl px-16 py-8 shadow-xl'}>
-          {children}
-        </div>
+        {children}
       </div>
     </div>
   )

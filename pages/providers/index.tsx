@@ -1,29 +1,29 @@
 import Card from 'components/core/Card'
 import Table from 'components/core/Table'
-import useCustomers from 'hooks/useCustomers'
+import useProviders from 'hooks/useProviders'
 import DefaultLayout from 'layouts/DefaultLayout'
-import { CustomerList } from 'models/Customer'
+import { ProviderList } from 'models/Provider'
 import { fetchData } from 'services/fetchData'
 import { dateFormat } from 'services/filters'
 
 export async function getServerSideProps () {
-  const customers = await fetchData('customers')
-  console.log(customers)
-  return { props: { customers } }
+  const providers = await fetchData('providers')
+  console.log(providers)
+  return { props: { providers } }
 }
 
 type Props = {
-  customers: CustomerList
+  providers: ProviderList
 }
 
-const Page = ({ customers }: Props) => {
-  const { deleteCustomer } = useCustomers()
+const Page = ({ providers }: Props) => {
+  const { deleteProvider } = useProviders()
 
   return (
-    <DefaultLayout title="Clientes" action={{ link: '/customers/new', name: 'Crear cliente' }}>
+    <DefaultLayout title="Proveedores" action={{ link: '/providers/new', name: 'Crear proveedor' }}>
       <Card max>
         <Table
-          onDelete={(id) => deleteCustomer(id)}
+          onDelete={(id) => deleteProvider(id)}
           headcells={[
             { title: 'Nombre', id: 'name' },
             { title: 'Nit', id: 'nit' },
@@ -32,13 +32,13 @@ const Page = ({ customers }: Props) => {
             { title: 'Creado en', id: 'createdAt' },
             { title: 'Eliminar', id: 'delete' }
           ]}
-          rows={Object.keys(customers).map(key => {
+          rows={Object.keys(providers).map(key => {
             return {
-              ...customers[key],
-              createdAt: dateFormat(customers[key].createdAt)
+              ...providers[key],
+              createdAt: dateFormat(providers[key].createdAt)
             }
           })}
-          subtitle="Listado de clientes"
+          subtitle="Listado de proveedores"
         />
       </Card>
     </DefaultLayout>

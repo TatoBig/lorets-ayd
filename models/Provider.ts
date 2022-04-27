@@ -1,4 +1,4 @@
-export type Customer = {
+export type Provider = {
   id: string
   nit: string
   name: string
@@ -8,6 +8,6 @@ export type Customer = {
   updatedAt: string
 }
 
-export interface CustomerList {
-  [prop: string]: Customer
+export interface ProviderList {
+  [prop: string]: Provider
 }

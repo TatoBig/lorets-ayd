@@ -1,14 +1,14 @@
 import { useToast } from '@chakra-ui/react'
-import { Customer } from 'models/Customer'
+import { Provider } from 'models/Provider'
 import { useRouter } from 'next/router'
 
-const url = '/api/customers'
+const url = '/api/providers'
 
-const useCustomers = () => {
+const useProviders = () => {
   const toast = useToast()
   const router = useRouter()
 
-  const newCustomer = async (data: Customer) => {
+  const newProvider = async (data: Provider) => {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -20,7 +20,7 @@ const useCustomers = () => {
     return body
   }
 
-  const deleteCustomer = async (id: string) => {
+  const deleteProvider = async (id: string) => {
     const response = await fetch(url, {
       method: 'DELETE',
       body: JSON.stringify({
@@ -46,9 +46,9 @@ const useCustomers = () => {
   }
 
   return {
-    newCustomer,
-    deleteCustomer
+    newProvider,
+    deleteProvider
   }
 }
 
-export default useCustomers
+export default useProviders

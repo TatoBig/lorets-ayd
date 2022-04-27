@@ -8,6 +8,7 @@ import {
   TableCaption,
   TableContainer
 } from '@chakra-ui/react'
+import { DeleteIcon } from '@chakra-ui/icons'
 
 type Props = {
   headcells: {
@@ -17,12 +18,14 @@ type Props = {
   }[]
   rows: any[]
   subtitle: string
+  onDelete: (id: string) => void
 }
 
 const Table = ({
   headcells,
   rows,
-  subtitle
+  subtitle,
+  onDelete
 }: Props) => {
   return (
     <TableContainer className="w-full">
@@ -38,9 +41,29 @@ const Table = ({
         <Tbody>
           {rows.map((row, index) => (
             <Tr key={index}>
-              {headcells.map((headcell, index) => (
-                <Td key={index} isNumeric={headcell.isNumberic}>{row[headcell.id]}</Td>
-              ))}
+              {headcells.map((headcell, index) => {
+                if (headcell.id !== 'delete') {
+                  return (
+                    <Td
+                      key={index}
+                      isNumeric={headcell.isNumberic}
+                    >
+                      {row[headcell.id]}
+                    </Td>
+                  )
+                } else {
+                  return (
+                    <Td
+                      className="flex justify-center cursor-pointer"
+                      key={index}
+                      isNumeric={headcell.isNumberic}
+                      onClick={() => onDelete(row.id)}
+                    >
+                      <DeleteIcon />
+                    </Td>
+                  )
+                }
+              })}
             </Tr>
           ))}
         </Tbody>
