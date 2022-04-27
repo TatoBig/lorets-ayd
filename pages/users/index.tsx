@@ -1,6 +1,5 @@
 import Card from 'components/core/Card'
 import Table from 'components/core/Table'
-import useUsers from 'hooks/useUsers'
 import DefaultLayout from 'layouts/DefaultLayout'
 import { UserList } from 'models/User'
 import { fetchData } from 'services/fetchData'

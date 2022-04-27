@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { fetchData } from 'services/fetchData'
 
-export async function getServerSideProps() {
+export async function getServerSideProps () {
   const products = await fetchData('products')
   const providers = await fetchData('providers')
   console.log(products)

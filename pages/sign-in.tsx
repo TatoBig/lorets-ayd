@@ -14,7 +14,7 @@ const animation = {
 }
 
 const SignIn: NextPage = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit } = useForm()
   const [animationState, setAnimationState] = useState<'close' | 'open'>('close')
   const dispatch = useDispatch()
   const {

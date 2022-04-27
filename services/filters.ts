@@ -7,7 +7,7 @@ export function capitalize (text: string) {
 }
 
 export function moneyFormat (currency: string, amount: number) {
-  return new Intl.NumberFormat('es-GT', { style: 'currency', currency: currency }).format(amount)
+  return new Intl.NumberFormat('es-GT', { style: 'currency', currency }).format(amount)
 }
 
 export const dateFormat = (date: string): string => {

@@ -27,6 +27,11 @@ const Table = ({
   subtitle,
   onDelete
 }: Props) => {
+  const handleDelete = (id: string) => {
+    if (onDelete) {
+      onDelete(id)
+    }
+  }
   return (
     <TableContainer className="w-full">
       <ChakraTable variant='simple'>
@@ -57,7 +62,7 @@ const Table = ({
                       className="flex justify-center cursor-pointer"
                       key={index}
                       isNumeric={headcell.isNumberic}
-                      onClick={() => onDelete(row.id)}
+                      onClick={() => handleDelete(row.id)}
                     >
                       <DeleteIcon />
                     </Td>

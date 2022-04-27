@@ -29,8 +29,7 @@ const DefaultLayout = ({ children, title, action, max = true }: Props) => {
   }, [])
 
   const {
-    logged,
-    username
+    logged
   } = useSelector(state => state.login)
 
   useEffect(() => {

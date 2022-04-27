@@ -46,7 +46,6 @@ const Page = () => {
             className="mb-3"
             size="lg"
             type="email"
-            
           />
           <Input
             placeholder="Contraseña"
