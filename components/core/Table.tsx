@@ -18,7 +18,7 @@ type Props = {
   }[]
   rows: any[]
   subtitle: string
-  onDelete: (id: string) => void
+  onDelete?: (id: string) => void
 }
 
 const Table = ({
