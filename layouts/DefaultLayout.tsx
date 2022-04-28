@@ -1,5 +1,4 @@
 import { ArrowRightIcon } from '@chakra-ui/icons'
-import Footer from 'components/core/Footer'
 import Drawer from 'components/layout/Drawer'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
