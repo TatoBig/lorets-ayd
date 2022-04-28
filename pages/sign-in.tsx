@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
 import firebase from 'services/firebase'
+import Footer from 'components/core/Footer'
 
 const animation = {
   open: 'w-full',
@@ -82,6 +83,10 @@ const SignIn: NextPage = () => {
             </Button>
           </form>
         </div>
+
+      </div>
+      <div className="mt-12 w-full flex justify-center">
+        <Footer />
 
       </div>
     </div>
