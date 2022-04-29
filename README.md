@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.imgur.com/Jlzu1WR.png" alt="Lorets Logo"/>
+</p>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
