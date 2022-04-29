@@ -8,7 +8,7 @@ import {
   TableCaption,
   TableContainer
 } from '@chakra-ui/react'
-import { DeleteIcon } from '@chakra-ui/icons'
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
 type Props = {
   headcells: {
@@ -19,17 +19,25 @@ type Props = {
   rows: any[]
   subtitle: string
   onDelete?: (id: string) => void
+  onEdit?: (id: string) => void
 }
 
 const Table = ({
   headcells,
   rows,
   subtitle,
-  onDelete
+  onDelete,
+  onEdit
 }: Props) => {
   const handleDelete = (id: string) => {
     if (onDelete) {
       onDelete(id)
+    }
+  }
+
+  const handleEdit = (id: string) => {
+    if (onEdit) {
+      onEdit(id)
     }
   }
   return (
@@ -47,24 +55,33 @@ const Table = ({
           {rows.map((row, index) => (
             <Tr key={index}>
               {headcells.map((headcell, index) => {
-                if (headcell.id !== 'delete') {
+                if (headcell.id === 'delete') {
+                  return (
+                    <Td
+                      className="flex ml-6 cursor-pointer"
+                      key={index}
+                      onClick={() => handleDelete(row.id)}
+                    >
+                      <DeleteIcon />
+                    </Td>
+                  )
+                } else if (headcell.id === 'edit') {
+                  return (
+                    <Td
+                      className="flex ml-4 cursor-pointer"
+                      key={index}
+                      onClick={() => handleEdit(row.id)}
+                    >
+                      <EditIcon />
+                    </Td>
+                  )
+                } else {
                   return (
                     <Td
                       key={index}
                       isNumeric={headcell.isNumberic}
                     >
                       {row[headcell.id]}
-                    </Td>
-                  )
-                } else {
-                  return (
-                    <Td
-                      className="flex justify-center cursor-pointer"
-                      key={index}
-                      isNumeric={headcell.isNumberic}
-                      onClick={() => handleDelete(row.id)}
-                    >
-                      <DeleteIcon />
                     </Td>
                   )
                 }

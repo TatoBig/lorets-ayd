@@ -1,9 +1,12 @@
 import { ArrowRightIcon } from '@chakra-ui/icons'
 import Drawer from 'components/layout/Drawer'
+import { onAuthStateChanged } from 'firebase/auth'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { auth } from 'services/firebase'
+import { loginRedux } from 'store/login'
 
 type Props = {
   children: ReactNode
@@ -23,6 +26,7 @@ const animation = {
 const DefaultLayout = ({ children, title, action, max = true }: Props) => {
   const [animationState, setAnimationState] = useState<'close' | 'open'>('close')
   const router = useRouter()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setAnimationState('open')
@@ -33,10 +37,24 @@ const DefaultLayout = ({ children, title, action, max = true }: Props) => {
   } = useSelector(state => state.login)
 
   useEffect(() => {
-    if (!logged) {
-      router.push('/sign-in')
-    }
-  }, [logged])
+    onAuthStateChanged(auth, (user) => {
+      console.log(user)
+      if (user === null) {
+        dispatch(loginRedux({
+          status: false,
+          username: undefined,
+          id: undefined
+        }))
+        router.push('/sign-in')
+      } else {
+        dispatch(loginRedux({
+          status: true,
+          username: user.email,
+          id: user.uid
+        }))
+      }
+    })
+  }, [])
 
   return (
     <div className="flex mt-6 mr-6">

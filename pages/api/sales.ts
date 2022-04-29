@@ -1,10 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { generateId } from './utils'
 import { redis } from '../../services/redis'
 
 const sales = async (request: NextApiRequest, response: NextApiResponse) => {
   if (request.method === 'POST') {
-    const { customerId, nit, total } = request.body
+    const { customerId, nit, total, id } = request.body
 
     const newPurchase = {
       nit,
@@ -14,7 +13,7 @@ const sales = async (request: NextApiRequest, response: NextApiResponse) => {
       createdAt: new Date()
     }
 
-    await redis.hset('sales', generateId(), JSON.stringify(newPurchase))
+    await redis.hset('sales', id, JSON.stringify(newPurchase))
     return response.status(200).json({
       body: 'success'
     })

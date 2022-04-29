@@ -31,7 +31,7 @@ const Page = ({ users }: Props) => {
               createdAt: dateFormat(users[key].createdAt)
             }
           })}
-          subtitle="Listado de clientes"
+          subtitle="Listado de usuarios"
         />
       </Card>
     </DefaultLayout>

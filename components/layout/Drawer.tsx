@@ -1,5 +1,6 @@
 import { AtSignIcon } from '@chakra-ui/icons'
 import Link from 'next/link'
+import { auth } from 'services/firebase'
 import DrawerLink from './DrawerLink'
 
 const drawerData = [
@@ -51,6 +52,12 @@ const Drawer = () => {
             item={item}
           />
         ))}
+        <div onClick={() => auth.signOut()} className="fixed bottom-0 w-56 cursor-pointer mb-4 p-4 pl-6 flex text-gray-700 items-center hover:bg-gray-100 transition-all rounded-3xl hover:shadow-xl">
+          <div className="mr-4">
+            <AtSignIcon />
+          </div>
+          Salir
+        </div>
       </div>
     </div>
   )

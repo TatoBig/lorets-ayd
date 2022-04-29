@@ -1,12 +1,12 @@
 import { Button, Input, useToast } from '@chakra-ui/react'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import { loginRedux } from 'store/login'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
-import firebase from 'services/firebase'
+import { auth } from 'services/firebase'
 import Footer from 'components/core/Footer'
 
 const animation = {
@@ -34,9 +34,8 @@ const SignIn: NextPage = () => {
     }
   }, [logged])
 
-  const onSubmit = (data) => {
-    console.log(firebase)
-    const auth = getAuth()
+  const onSubmit = async (data) => {
+    await setPersistence(auth, browserLocalPersistence)
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed in

@@ -3,6 +3,7 @@ export type PurchaseDetail = {
   productId: string
   quantity: number
   total: number
+  purchaseId: string
   createdAt: string
   updatedAt: string
 }

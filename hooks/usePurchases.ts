@@ -1,4 +1,5 @@
 import { ProductList } from 'models/Product'
+import { generateId } from 'pages/api/utils'
 import usePurchaseDetails from './usePurchaseDetails'
 
 const url = '/api/purchases'
@@ -11,11 +12,14 @@ const usePurchases = () => {
       console.log(data)
 
       const details = []
+      const purchaseId = generateId()
+
       for (let i = 0; i < purchaseLength; i++) {
         details.push({
           total: products[data[`productId${i}`]].price * data[`quantity${i}`],
           productId: data[`productId${i}`],
-          quantity: data[`quantity${i}`]
+          quantity: data[`quantity${i}`],
+          purchaseId
         })
       }
 
@@ -30,7 +34,8 @@ const usePurchases = () => {
       const newPurchase = {
         nit: data.nit,
         providerId: data.providerId,
-        total: purchaseTotal
+        total: purchaseTotal,
+        id: purchaseId
       }
 
       const response = await fetch(url, {

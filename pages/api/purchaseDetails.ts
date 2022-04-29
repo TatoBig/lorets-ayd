@@ -4,9 +4,10 @@ import { redis } from '../../services/redis'
 
 const purchaseDetails = async (request: NextApiRequest, response: NextApiResponse) => {
   if (request.method === 'POST') {
-    const { productId, total, quantity } = request.body
+    const { productId, total, quantity, purchaseId } = request.body
 
     const newPurchaseDetail = {
+      purchaseId,
       productId,
       total,
       quantity,
